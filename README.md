@@ -15,11 +15,6 @@ Alternatively, to build fresh standalone docker image, so that you can use these
 
 `sudo docker build -t imagebreeddroneimagescripts .`
 
-To launch the built docker image:
+To run a script in the container, allowing access to the current working directory in the container, invoke docker as follows, specifing the path to the script as `/app/<path>`, where `<path>` is the path to the script with respect to the root of the git working tree:
 
-`sudo docker run -t -d BUILTIMAGEID`
-
-To enter running docker container, where all DroneImageScripts are runnable:
-
-`sudo docker exec -it RUNNINGCONTAINERID bash`
-
+`sudo docker run -it --rm -v $PWD:/mnt -w /mnt imagebreeddroneimagescripts python3 /app/CNN/CNNProcessData.py`
